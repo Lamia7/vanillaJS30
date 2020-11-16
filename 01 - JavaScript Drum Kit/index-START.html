@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 
   <div class="keys">
     <div data-key="65" class="key">
-      <kbd>A</kbd>
+      <kbd>Q</kbd>
       <span class="sound">clap</span>
     </div>
     <div data-key="83" class="key">
@@ -57,10 +59,17 @@
   <audio data-key="75" src="sounds/tom.wav"></audio>
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
-<script>
-
-</script>
+  <script>
+    window.addEventListener('keydown', function (e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // associate keyboard event to an <audio> that contains sound
+      console.log(audio);
+      if (!audio) return; // stop the function from running together
+      audio.currentTime = 0; // rewind to the start to allow to select another sound before the precedent ends
+      audio.play();
+    });
+  </script>
 
 
 </body>
+
 </html>
